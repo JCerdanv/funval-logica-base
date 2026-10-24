@@ -11,31 +11,27 @@ const version: number = 10.3;
 const userName: string = "JCerdan";
 
 console.log( "================*==================");
-console.log( "  Nombre del sistema  " + systemName + " v" + version);
+console.log( "  Nombre del sisTema  " + systemName + " v" + version);
 console.log( "  ¡Bienvenido, [" + userName + "]!");
-console.log( "==================================");
+console.log( "==================================\n");
 
 const answer = await rl.question("¿Cuál es tu nombre? ");
 console.log(`Hola, ${answer}!`);
 
-let usuarioJ: string = answer;
-let cuentasJ = 0;
 let opcionJ: string = " ";
 let tareaJ: string[] = []; 
 
 do {
-    console.log( "\n===  MENU DE TAREAS  ===");
-    console.log( "     a = agregar tarea   ===");
-    console.log( "     e = eliminar tarea  ===");
-    console.log( "     l = lista de tareas ===");
-    console.log( "     s = salir del menu  ===");
+    console.log( "\n===|       MENU DE TAREAS       |===");
+    console.log( "     a  =  Agregar nueva tarea a lista  ===");
+    console.log( "     e  =  Eliminar ultima tarea de lista ===");
+    console.log( "     l  =  Lista de todas tareas ===");
+    console.log( "     s  =  Salir del menu  ===");
     opcionJ = await rl.question("Elija una letra: ");
-
-    //
 
     switch (opcionJ.trim().toLowerCase()) {
         case "a":
-            const nuevaTarea = await rl.question("Introduce el título de la tarea: ");
+            const nuevaTarea = await rl.question("Ingresa el título de la tarea: ");
             if (nuevaTarea.trim() !== "") {
                 tareaJ.push(nuevaTarea.trim());
                 console.log(` Tarea "${nuevaTarea}" agregada con éxito.`);
@@ -54,7 +50,7 @@ do {
             break;
 
         case "l":
-            console.log("\n--- LISTA DE TAREAS ---");
+            console.log("\n->>> LISTA DE TAREAS <<<-");
             if (tareaJ.length === 0) {
                 console.log("No hay tareas registradas.");
             } else {
@@ -69,19 +65,14 @@ do {
             break;
 
         default:
-            cuentasJ++;
-            if ( cuentasJ > 3) {
-               console.log(`${answer}, debes usar las opciones sugeridas\n`); 
-               cuentasJ = 0;
-            }
+            
+            console.log(`${answer}, debes usar las opciones sugeridas\n`); 
             break;
 
     }
     //
          
-} while (opcionJ !== "s");
+} while ( opcionJ.trim().toLowerCase() !== "s");
 
 // 🚫 No eliminar las líneas de abajo ⬇️
 rl.close();
-
-//
